@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://w5ky7drwybum"]
+
+[ext_resource type="Texture2D" uid="uid://bgiay5oraalsp" path="res://assets/sprites/experience_under.png" id="1_4sqdt"]
+[ext_resource type="Texture2D" uid="uid://b1p7a0em7x6sf" path="res://assets/sprites/square.png" id="1_o2t7w"]
+[ext_resource type="Script" uid="uid://njq7npjtwvfv" path="res://code/scripts/experience_view.gd" id="2_35ahd"]
+[ext_resource type="Script" uid="uid://dhcwna7kufn2m" path="res://code/scripts/Feel/feel_player.gd" id="4_xxyjb"]
+[ext_resource type="Script" uid="uid://dr3646gmtd5i6" path="res://code/scripts/Feel/feel_component.gd" id="5_ql8x0"]
+[ext_resource type="Script" uid="uid://xcqku7rlvrdi" path="res://code/scripts/Feel/Sound/sfx.gd" id="6_s563r"]
+[ext_resource type="AudioStream" uid="uid://b5girra5ojdxv" path="res://assets/sfxs/level_up.mp3" id="7_ql8x0"]
+
+[sub_resource type="Resource" id="Resource_8xlsl"]
+script = ExtResource("6_s563r")
+audio_bus = ""
+volume = 1.0
+stream = ExtResource("7_ql8x0")
+metadata/_custom_type_script = "uid://xcqku7rlvrdi"
+
+[node name="ExperienceView" type="NinePatchRect" node_paths=PackedStringArray("prograss_bar", "level_up_feel")]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_4sqdt")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+script = ExtResource("2_35ahd")
+prograss_bar = NodePath("MarginContainer/TextureProgressBar")
+level_up_feel = NodePath("LevelUpFeel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 0.5
+nine_patch_stretch = true
+texture_progress = ExtResource("1_o2t7w")
+
+[node name="LevelUpFeel" type="Node" parent="."]
+script = ExtResource("4_xxyjb")
+feels = Array[ExtResource("5_ql8x0")]([SubResource("Resource_8xlsl")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"

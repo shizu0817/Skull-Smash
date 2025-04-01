@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://d3x7bnadyn81c"]
+
+[ext_resource type="Script" uid="uid://blstu8dfl55a4" path="res://code/scripts/player_stats.gd" id="1_rhwlh"]
+
+[resource]
+script = ExtResource("1_rhwlh")
+level = 4
+max_experience = 80
+power = 400.0
+can_break_shield = true
+aim_hint_length = 0.0
+is_charge_mode = false
+metadata/_custom_type_script = "uid://blstu8dfl55a4"

@@ -1,0 +1,127 @@
+[gd_scene load_steps=23 format=3 uid="uid://b346ay24csscj"]
+
+[ext_resource type="PackedScene" uid="uid://dm7bfpn7upmx0" path="res://scenes/skeleton.tscn" id="1_vsa62"]
+[ext_resource type="Script" uid="uid://cjl8jh4qhtanx" path="res://code/scripts/shield_skeleton.gd" id="2_2qfbx"]
+[ext_resource type="Texture2D" uid="uid://0n8k5adldh8g" path="res://assets/sprites/shield_skeleton.png" id="2_ndc6n"]
+[ext_resource type="Script" uid="uid://dhcwna7kufn2m" path="res://code/scripts/Feel/feel_player.gd" id="4_47mc8"]
+[ext_resource type="Script" uid="uid://dr3646gmtd5i6" path="res://code/scripts/Feel/feel_component.gd" id="5_p58ft"]
+[ext_resource type="Script" uid="uid://dqowlnec75dvh" path="res://code/scripts/Feel/Node2D/position.gd" id="6_3htqo"]
+[ext_resource type="Script" uid="uid://xcqku7rlvrdi" path="res://code/scripts/Feel/Sound/sfx.gd" id="6_s7ksl"]
+[ext_resource type="AudioStream" uid="uid://bvajwbvy0v5em" path="res://assets/sfxs/block.wav" id="7_s7ksl"]
+[ext_resource type="Script" uid="uid://dwbglqm285oy" path="res://code/scripts/Feel/TimeScale/time_scale.gd" id="7_spia7"]
+[ext_resource type="Script" uid="uid://j7fy8b3k2j86" path="res://code/scripts/Feel/Pause/pause.gd" id="8_tyk7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qfbx"]
+atlas = ExtResource("2_ndc6n")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47mc8"]
+atlas = ExtResource("2_ndc6n")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p58ft"]
+atlas = ExtResource("2_ndc6n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3htqo"]
+atlas = ExtResource("2_ndc6n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0fb14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qfbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47mc8")
+}],
+"loop": true,
+"name": &"Guard",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p58ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3htqo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ji13v"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("7_s7ksl")
+
+[sub_resource type="Resource" id="Resource_kym77"]
+script = ExtResource("6_s7ksl")
+audio_bus = "Sfx"
+volume = 1.0
+stream = SubResource("AudioStreamRandomizer_ji13v")
+metadata/_custom_type_script = "uid://xcqku7rlvrdi"
+
+[sub_resource type="Resource" id="Resource_s7ksl"]
+script = ExtResource("7_spia7")
+time_scale = 0.1
+metadata/_custom_type_script = "uid://dwbglqm285oy"
+
+[sub_resource type="Resource" id="Resource_kqs4s"]
+script = ExtResource("8_tyk7m")
+pause_seconds = 0.025
+metadata/_custom_type_script = "uid://j7fy8b3k2j86"
+
+[sub_resource type="Resource" id="Resource_ji13v"]
+script = ExtResource("7_spia7")
+time_scale = 1.0
+metadata/_custom_type_script = "uid://dwbglqm285oy"
+
+[sub_resource type="Curve" id="Curve_3htqo"]
+_data = [Vector2(0, 0), 0.0, 5.23977, 0, 0, Vector2(0.172697, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0785136, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_0fb14"]
+script = ExtResource("6_3htqo")
+target = NodePath("../AnimatedSprite2D")
+target_as = "relative"
+target_position = Vector2(5, 0)
+duration = 0.2
+transition_type = 0
+ease_type = 0
+custom_curve = SubResource("Curve_3htqo")
+metadata/_custom_type_script = "uid://dqowlnec75dvh"
+
+[node name="ShieldSkeleton" node_paths=PackedStringArray("animated_sprite", "timer", "guard_feel") instance=ExtResource("1_vsa62")]
+script = ExtResource("2_2qfbx")
+animated_sprite = NodePath("AnimatedSprite2D")
+timer = NodePath("Timer")
+idle_time = 0.85
+guard_time = 1.65
+guard_feel = NodePath("BlockFeel")
+experience = 5
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_0fb14")
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": false,
+"layers": ["ShieldSkeleton"],
+"o_ex_p": "",
+"o_folder": "res://assets/sprites",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/aseprite/shield_skeleton.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "2bf359605f360618b6d4a618f20eee6b"
+
+[node name="Timer" type="Timer" parent="." index="3"]
+one_shot = true
+
+[node name="BlockFeel" type="Node" parent="." index="6"]
+script = ExtResource("4_47mc8")
+feels = Array[ExtResource("5_p58ft")]([SubResource("Resource_kym77"), SubResource("Resource_s7ksl"), SubResource("Resource_kqs4s"), SubResource("Resource_ji13v"), SubResource("Resource_0fb14")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"

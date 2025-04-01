@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgrrwl6qokvj6"]
+
+[ext_resource type="Texture2D" uid="uid://b1p7a0em7x6sf" path="res://assets/sprites/square.png" id="1_ahxyo"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ahxyo"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 40.0
+emission_ring_inner_radius = 30.0
+emission_ring_cone_angle = 90.0
+radial_velocity_min = -98.02
+radial_velocity_max = -77.8
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+
+[node name="ChargingParticle" type="GPUParticles2D"]
+amount = 32
+texture = ExtResource("1_ahxyo")
+lifetime = 0.3
+randomness = 0.48
+process_material = SubResource("ParticleProcessMaterial_ahxyo")

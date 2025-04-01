@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://djj8usx0somnd"
+path="res://.godot/imported/bone_particles.aseprite-76287ddc6b8951688d9ed5aa25d4b81f.res"
+
+[deps]
+
+source_file="res://assets/aseprite/bone_particles.aseprite"
+dest_files=["res://.godot/imported/bone_particles.aseprite-76287ddc6b8951688d9ed5aa25d4b81f.res"]
+
+[params]
+

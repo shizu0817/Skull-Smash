@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnsvbn5k773pp"]
+
+[ext_resource type="Texture2D" uid="uid://b1p7a0em7x6sf" path="res://assets/sprites/square.png" id="1_7cpoj"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7cpoj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(150, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 40.12
+initial_velocity_max = 89.06
+gravity = Vector3(0, 200, 0)
+scale_min = 0.03
+scale_max = 0.06
+
+[node name="GroundDustParticle" type="GPUParticles2D"]
+z_index = 1
+amount = 300
+texture = ExtResource("1_7cpoj")
+visibility_rect = Rect2(-250, -100, 500, 200)
+process_material = SubResource("ParticleProcessMaterial_7cpoj")

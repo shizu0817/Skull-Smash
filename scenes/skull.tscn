@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://bleap5lhp8ln8"]
+
+[ext_resource type="Texture2D" uid="uid://cfo8xs8yl7ueo" path="res://assets/sprites/skull.png" id="1_1bx6h"]
+[ext_resource type="Script" uid="uid://d217n2l2tp6wg" path="res://code/scripts/skull.gd" id="1_sco77"]
+[ext_resource type="Script" uid="uid://dhcwna7kufn2m" path="res://code/scripts/Feel/feel_player.gd" id="3_pa1hf"]
+[ext_resource type="Script" uid="uid://dr3646gmtd5i6" path="res://code/scripts/Feel/feel_component.gd" id="4_8axce"]
+[ext_resource type="Script" uid="uid://xcqku7rlvrdi" path="res://code/scripts/Feel/Sound/sfx.gd" id="5_w7rgt"]
+[ext_resource type="AudioStream" uid="uid://cw7rvdn5jakr3" path="res://assets/sfxs/drop.wav" id="6_w7rgt"]
+[ext_resource type="PackedScene" uid="uid://ctp14730s6c47" path="res://scenes/particles/dust_particle.tscn" id="7_xmxwk"]
+[ext_resource type="Script" uid="uid://0mek4ycevuj5" path="res://code/scripts/Feel/particle_feel.gd" id="8_8emal"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sco77"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mfoix"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_w7rgt")
+
+[sub_resource type="Resource" id="Resource_xmxwk"]
+script = ExtResource("5_w7rgt")
+audio_bus = "Sfx"
+volume = 0.2
+stream = SubResource("AudioStreamRandomizer_mfoix")
+metadata/_custom_type_script = "uid://xcqku7rlvrdi"
+
+[sub_resource type="Resource" id="Resource_mferh"]
+script = ExtResource("8_8emal")
+particle_scene = ExtResource("7_xmxwk")
+parent = "current_scene"
+position_type = "relative"
+spawn_position = Vector2(5, 2)
+free_on_finished = true
+metadata/_custom_type_script = "uid://0mek4ycevuj5"
+
+[node name="Skull" type="RigidBody2D" node_paths=PackedStringArray("drop_feel")]
+collision_mask = 4
+contact_monitor = true
+max_contacts_reported = 1
+angular_velocity = 12.5664
+script = ExtResource("1_sco77")
+drop_feel = NodePath("DropFeel")
+floor_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("1_1bx6h")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": false,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://assets/sprites",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/aseprite/skull.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f02f16dd037740038bdbc251f85b0ca8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sco77")
+
+[node name="DropFeel" type="Node" parent="."]
+script = ExtResource("3_pa1hf")
+feels = Array[ExtResource("4_8axce")]([SubResource("Resource_xmxwk"), SubResource("Resource_mferh")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"

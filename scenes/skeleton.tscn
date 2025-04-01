@@ -1,0 +1,143 @@
+[gd_scene load_steps=25 format=3 uid="uid://dm7bfpn7upmx0"]
+
+[ext_resource type="Script" uid="uid://cv2oh8eccwwj6" path="res://code/scripts/skeleton.gd" id="1_txkty"]
+[ext_resource type="PackedScene" uid="uid://bleap5lhp8ln8" path="res://scenes/skull.tscn" id="2_w4hcs"]
+[ext_resource type="Script" uid="uid://dhcwna7kufn2m" path="res://code/scripts/Feel/feel_player.gd" id="3_ivqcw"]
+[ext_resource type="Texture2D" uid="uid://bwjxbepjywpev" path="res://assets/sprites/skeleton.png" id="3_w4hcs"]
+[ext_resource type="Script" uid="uid://dr3646gmtd5i6" path="res://code/scripts/Feel/feel_component.gd" id="4_5pgwy"]
+[ext_resource type="Script" uid="uid://dwbglqm285oy" path="res://code/scripts/Feel/TimeScale/time_scale.gd" id="5_ssl1b"]
+[ext_resource type="Script" uid="uid://j7fy8b3k2j86" path="res://code/scripts/Feel/Pause/pause.gd" id="6_ssl1b"]
+[ext_resource type="Script" uid="uid://xcqku7rlvrdi" path="res://code/scripts/Feel/Sound/sfx.gd" id="8_3nhjk"]
+[ext_resource type="Script" uid="uid://0mek4ycevuj5" path="res://code/scripts/Feel/particle_feel.gd" id="8_haw2w"]
+[ext_resource type="PackedScene" uid="uid://c4i2j86to3dt3" path="res://scenes/particles/light_bone_break.tscn" id="8_i0f3v"]
+[ext_resource type="AudioStream" uid="uid://x8dpfx4qa1rs" path="res://assets/sfxs/break.wav" id="9_ghshk"]
+[ext_resource type="PackedScene" uid="uid://ddo827q72n7pi" path="res://scenes/particles/mid_bone_break.tscn" id="10_xrus2"]
+[ext_resource type="PackedScene" uid="uid://buc5cf5tq84ds" path="res://scenes/particles/heavy_bone_break.tscn" id="11_7e1v2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haw2w"]
+atlas = ExtResource("3_w4hcs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0f3v"]
+atlas = ExtResource("3_w4hcs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrus2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haw2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0f3v")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3nhjk"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("9_ghshk")
+
+[sub_resource type="Resource" id="Resource_ghshk"]
+script = ExtResource("8_3nhjk")
+audio_bus = "Sfx"
+volume = 1.0
+stream = SubResource("AudioStreamRandomizer_3nhjk")
+metadata/_custom_type_script = "uid://xcqku7rlvrdi"
+
+[sub_resource type="Resource" id="Resource_xrus2"]
+script = ExtResource("8_haw2w")
+particle_scene = ExtResource("8_i0f3v")
+parent = "current_scene"
+position_type = "relative"
+spawn_position = Vector2(0, -8)
+free_on_finished = true
+metadata/_custom_type_script = "uid://0mek4ycevuj5"
+
+[sub_resource type="Resource" id="Resource_w4hcs"]
+script = ExtResource("5_ssl1b")
+time_scale = 0.1
+metadata/_custom_type_script = "uid://dwbglqm285oy"
+
+[sub_resource type="Resource" id="Resource_haw2w"]
+script = ExtResource("6_ssl1b")
+pause_seconds = 0.025
+metadata/_custom_type_script = "uid://j7fy8b3k2j86"
+
+[sub_resource type="Resource" id="Resource_i0f3v"]
+script = ExtResource("5_ssl1b")
+time_scale = 1.0
+metadata/_custom_type_script = "uid://dwbglqm285oy"
+
+[sub_resource type="Resource" id="Resource_7e1v2"]
+script = ExtResource("8_haw2w")
+particle_scene = ExtResource("10_xrus2")
+parent = "current_scene"
+position_type = "relative"
+spawn_position = Vector2(0, -8)
+free_on_finished = true
+metadata/_custom_type_script = "uid://0mek4ycevuj5"
+
+[sub_resource type="Resource" id="Resource_rjsi3"]
+script = ExtResource("8_haw2w")
+particle_scene = ExtResource("11_7e1v2")
+parent = "current_scene"
+position_type = "relative"
+spawn_position = Vector2(0, -8)
+free_on_finished = true
+metadata/_custom_type_script = "uid://0mek4ycevuj5"
+
+[node name="Skeleton" type="Node2D" node_paths=PackedStringArray("skull_marker", "light_break_feel", "mid_break_feel", "hard_break_feel") groups=["Skeleton"]]
+script = ExtResource("1_txkty")
+skull_scene = ExtResource("2_w4hcs")
+skull_marker = NodePath("SkullMarker")
+light_break_feel = NodePath("LightBreakFeel")
+mid_break_feel = NodePath("MidBreakFeel")
+hard_break_feel = NodePath("HeavyBreakFeel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xrus2")
+animation = &"Idle"
+autoplay = "Idle"
+offset = Vector2(0, -16)
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": true,
+"output_section": true,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": false,
+"layers": ["Skeleton"],
+"o_ex_p": "",
+"o_folder": "res://assets/sprites",
+"o_name": "skeleton",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/aseprite/skeleton.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "483e595b7f36ca700f580d53d76bef2f"
+
+[node name="SkullMarker" type="Marker2D" parent="."]
+position = Vector2(0, -13)
+
+[node name="LightBreakFeel" type="Node" parent="."]
+script = ExtResource("3_ivqcw")
+feels = Array[ExtResource("4_5pgwy")]([SubResource("Resource_ghshk"), SubResource("Resource_xrus2"), SubResource("Resource_w4hcs"), SubResource("Resource_haw2w"), SubResource("Resource_i0f3v")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"
+
+[node name="MidBreakFeel" type="Node" parent="."]
+script = ExtResource("3_ivqcw")
+feels = Array[ExtResource("4_5pgwy")]([SubResource("Resource_ghshk"), SubResource("Resource_7e1v2"), SubResource("Resource_w4hcs"), SubResource("Resource_haw2w"), SubResource("Resource_i0f3v")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"
+
+[node name="HeavyBreakFeel" type="Node" parent="."]
+script = ExtResource("3_ivqcw")
+feels = Array[ExtResource("4_5pgwy")]([SubResource("Resource_ghshk"), SubResource("Resource_rjsi3"), SubResource("Resource_w4hcs"), SubResource("Resource_haw2w"), SubResource("Resource_i0f3v")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"

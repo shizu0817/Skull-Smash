@@ -1,0 +1,430 @@
+[gd_scene load_steps=62 format=3 uid="uid://caejk4d16svyd"]
+
+[ext_resource type="Script" uid="uid://bd2tly825fb80" path="res://code/scripts/game_manager.gd" id="1_4mrxx"]
+[ext_resource type="Script" uid="uid://cd30qlpugrkm4" path="res://code/scripts/particle_preinstantiator.gd" id="1_37qwj"]
+[ext_resource type="Script" uid="uid://udfnarnw6g51" path="res://code/scripts/camera_controller.gd" id="1_munwf"]
+[ext_resource type="PackedScene" uid="uid://83voy5umjuu1" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://dofsnebth1ycs" path="res://assets/sprites/floor.png" id="2_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://cgrrwl6qokvj6" path="res://scenes/particles/charging_particle.tscn" id="2_f17e3"]
+[ext_resource type="Script" uid="uid://dhcwna7kufn2m" path="res://code/scripts/Feel/feel_player.gd" id="2_o8fc1"]
+[ext_resource type="Script" uid="uid://bcq1c02qf4fj7" path="res://code/scripts/skeleton_queue.gd" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://d0qtlufeycuf2" path="res://code/scripts/tooltip_data.gd" id="2_xgqkh"]
+[ext_resource type="PackedScene" uid="uid://dlwkvborx8ne8" path="res://scenes/skeleton_spawner.tscn" id="3_4wyf3"]
+[ext_resource type="Script" uid="uid://dr3646gmtd5i6" path="res://code/scripts/Feel/feel_component.gd" id="3_dss4m"]
+[ext_resource type="PackedScene" uid="uid://vo3fi27is8ig" path="res://scenes/particles/drain.tscn" id="3_x2olw"]
+[ext_resource type="Script" uid="uid://dqowlnec75dvh" path="res://code/scripts/Feel/Node2D/position.gd" id="4_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://ctp14730s6c47" path="res://scenes/particles/dust_particle.tscn" id="4_817gm"]
+[ext_resource type="PackedScene" uid="uid://w5ky7drwybum" path="res://scenes/experience_view.tscn" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://dm7bfpn7upmx0" path="res://scenes/skeleton.tscn" id="4_q5onr"]
+[ext_resource type="Script" uid="uid://xcqku7rlvrdi" path="res://code/scripts/Feel/Sound/sfx.gd" id="5_7t5mc"]
+[ext_resource type="Script" uid="uid://fii0bfbv1wfu" path="res://code/scripts/Spawner/spawner.gd" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://b346ay24csscj" path="res://scenes/shield_skeleton.tscn" id="5_jhx03"]
+[ext_resource type="AudioStream" uid="uid://dxyf6f854j1cy" path="res://assets/sfxs/dirt.wav" id="6_lakw3"]
+[ext_resource type="Script" uid="uid://qwjp8yjfb8l" path="res://code/scripts/Feel/gpu_particles_2d_feel.gd" id="6_oo54l"]
+[ext_resource type="PackedScene" uid="uid://dbn5w2calp2l6" path="res://scenes/wizard_skeleton.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://buc5cf5tq84ds" path="res://scenes/particles/heavy_bone_break.tscn" id="7_ggc52"]
+[ext_resource type="Script" uid="uid://cqp7wmb704yei" path="res://code/scripts/Spawner/rectangle.gd" id="7_i7141"]
+[ext_resource type="Script" uid="uid://j7fy8b3k2j86" path="res://code/scripts/Feel/Pause/pause.gd" id="7_pm21f"]
+[ext_resource type="Script" uid="uid://kg4xlbrbyvh3" path="res://code/scripts/Feel/Camera/camera_shake.gd" id="8_2lf6f"]
+[ext_resource type="PackedScene" uid="uid://c4i2j86to3dt3" path="res://scenes/particles/light_bone_break.tscn" id="8_l8ah6"]
+[ext_resource type="PackedScene" uid="uid://ddo827q72n7pi" path="res://scenes/particles/mid_bone_break.tscn" id="9_e75v4"]
+[ext_resource type="Texture2D" uid="uid://b8c40rb4nu240" path="res://assets/sprites/cloud.png" id="9_w7kh3"]
+[ext_resource type="PackedScene" uid="uid://bcj527it17qb3" path="res://scenes/particles/ball_inner_particle.tscn" id="10_x2olw"]
+[ext_resource type="AudioStream" uid="uid://cw7rvdn5jakr3" path="res://assets/sfxs/drop.wav" id="12_ts3gi"]
+[ext_resource type="PackedScene" uid="uid://bpepa3r2xkc2d" path="res://scenes/ball.tscn" id="13_jhx03"]
+[ext_resource type="PackedScene" uid="uid://7g0exs4s7agi" path="res://scenes/particles/fireworks.tscn" id="20_0nbtd"]
+[ext_resource type="PackedScene" uid="uid://bnsvbn5k773pp" path="res://scenes/particles/ground_dust_particle.tscn" id="21_7iits"]
+[ext_resource type="FontFile" uid="uid://c0nyss1m4saih" path="res://assets/font/Kenney Mini.ttf" id="23_kpybi"]
+[ext_resource type="Script" uid="uid://cxu73nl32pr74" path="res://code/scripts/typewriter.gd" id="24_ctatt"]
+
+[sub_resource type="Resource" id="Resource_luhhm"]
+script = ExtResource("2_xgqkh")
+show_at_level = 1
+text = "Press Space to Attack"
+display_time = -1.0
+metadata/_custom_type_script = "uid://d0qtlufeycuf2"
+
+[sub_resource type="Resource" id="Resource_munwf"]
+script = ExtResource("2_xgqkh")
+show_at_level = 2
+text = "Level Up!"
+display_time = 2.0
+metadata/_custom_type_script = "uid://d0qtlufeycuf2"
+
+[sub_resource type="Resource" id="Resource_fh13f"]
+script = ExtResource("2_xgqkh")
+show_at_level = 3
+text = "Level Up!"
+display_time = 2.0
+metadata/_custom_type_script = "uid://d0qtlufeycuf2"
+
+[sub_resource type="Resource" id="Resource_ts3gi"]
+script = ExtResource("2_xgqkh")
+show_at_level = 4
+text = "You Can Break the Shields Now!"
+display_time = -1.0
+metadata/_custom_type_script = "uid://d0qtlufeycuf2"
+
+[sub_resource type="Resource" id="Resource_0nbtd"]
+script = ExtResource("2_xgqkh")
+show_at_level = 5
+text = "Aim at Those Floating Skeletons"
+display_time = -1.0
+metadata/_custom_type_script = "uid://d0qtlufeycuf2"
+
+[sub_resource type="Resource" id="Resource_37qwj"]
+script = ExtResource("2_xgqkh")
+show_at_level = 6
+text = "Power Up!!!"
+display_time = 2.0
+metadata/_custom_type_script = "uid://d0qtlufeycuf2"
+
+[sub_resource type="Resource" id="Resource_navra"]
+script = ExtResource("2_xgqkh")
+show_at_level = 7
+text = "Hold Space to End"
+display_time = -1.0
+metadata/_custom_type_script = "uid://d0qtlufeycuf2"
+
+[sub_resource type="Resource" id="Resource_lakw3"]
+script = ExtResource("4_7t5mc")
+target = NodePath("../../Foreground/Ball")
+target_as = "absolute"
+target_position = Vector2(120, 35)
+duration = 1.0
+transition_type = 10
+ease_type = 1
+metadata/_custom_type_script = "uid://dqowlnec75dvh"
+
+[sub_resource type="Resource" id="Resource_7iits"]
+script = ExtResource("7_pm21f")
+pause_seconds = 0.0
+metadata/_custom_type_script = "uid://j7fy8b3k2j86"
+
+[sub_resource type="Curve" id="Curve_oo54l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.748355, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_kpybi"]
+script = ExtResource("6_oo54l")
+target = NodePath("../../Foreground/GroundDustParticle")
+emitting = true
+amount_ratio_duration = 2.0
+amount_ratio_curve = SubResource("Curve_oo54l")
+metadata/_custom_type_script = "uid://qwjp8yjfb8l"
+
+[sub_resource type="Resource" id="Resource_2lf6f"]
+script = ExtResource("4_7t5mc")
+target = NodePath("../../SkeletonQueue")
+target_as = "absolute"
+target_position = Vector2(101, 132)
+duration = 3.0
+transition_type = 7
+ease_type = 1
+metadata/_custom_type_script = "uid://dqowlnec75dvh"
+
+[sub_resource type="Resource" id="Resource_pm21f"]
+script = ExtResource("5_7t5mc")
+audio_bus = "Sfx"
+volume = 1.0
+stream = ExtResource("6_lakw3")
+metadata/_custom_type_script = "uid://xcqku7rlvrdi"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2lf6f"]
+noise_type = 3
+frequency = 0.0183
+
+[sub_resource type="Curve" id="Curve_7iits"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.99411, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_oo54l"]
+script = ExtResource("8_2lf6f")
+strength = 5.0
+duration = 3.0
+strength_curve = SubResource("Curve_7iits")
+noise = SubResource("FastNoiseLite_2lf6f")
+noise_move_speed = 500.0
+reset_to_zero = true
+metadata/_custom_type_script = "uid://kg4xlbrbyvh3"
+
+[sub_resource type="Resource" id="Resource_ctatt"]
+script = ExtResource("7_pm21f")
+pause_seconds = 0.0
+metadata/_custom_type_script = "uid://j7fy8b3k2j86"
+
+[sub_resource type="Resource" id="Resource_xgqkh"]
+script = ExtResource("6_oo54l")
+target = NodePath("../../Foreground/GroundDustParticle")
+emitting = false
+amount_ratio_duration = 1.0
+metadata/_custom_type_script = "uid://qwjp8yjfb8l"
+
+[sub_resource type="Resource" id="Resource_rup4s"]
+script = ExtResource("4_7t5mc")
+target = NodePath("../../Foreground/Ball")
+target_as = "absolute"
+target_position = Vector2(160, 122)
+duration = 1.0
+transition_type = 4
+ease_type = 0
+metadata/_custom_type_script = "uid://dqowlnec75dvh"
+
+[sub_resource type="Resource" id="Resource_4kbfs"]
+script = ExtResource("7_pm21f")
+pause_seconds = 0.0
+metadata/_custom_type_script = "uid://j7fy8b3k2j86"
+
+[sub_resource type="Resource" id="Resource_f17e3"]
+script = ExtResource("5_7t5mc")
+audio_bus = ""
+volume = 1.0
+stream = ExtResource("12_ts3gi")
+metadata/_custom_type_script = "uid://xcqku7rlvrdi"
+
+[sub_resource type="Resource" id="Resource_4mrxx"]
+script = ExtResource("7_i7141")
+width = 81.855
+height = 70.0
+metadata/_custom_type_script = "uid://cqp7wmb704yei"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k0juu"]
+
+[sub_resource type="Resource" id="Resource_x2olw"]
+script = ExtResource("7_i7141")
+width = 250.0
+height = 70.0
+metadata/_custom_type_script = "uid://cqp7wmb704yei"
+
+[sub_resource type="LabelSettings" id="LabelSettings_oo54l"]
+font = ExtResource("23_kpybi")
+font_size = 8
+font_color = Color(0.92549, 0.92549, 0.92549, 1)
+shadow_size = 0
+
+[node name="World" type="Node2D"]
+
+[node name="ParticlePreinstantiator" type="Node" parent="."]
+script = ExtResource("1_37qwj")
+particle_scenes = Array[PackedScene]([ExtResource("2_f17e3"), ExtResource("3_x2olw"), ExtResource("4_817gm"), ExtResource("20_0nbtd"), ExtResource("21_7iits"), ExtResource("7_ggc52"), ExtResource("8_l8ah6"), ExtResource("9_e75v4"), ExtResource("10_x2olw")])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+script = ExtResource("1_munwf")
+move_speed = 300.0
+zoom_speed = 3.0
+max_focus_zoom = Vector2(1.1, 1.1)
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("skeleton_spawner", "skeleton_queue", "wizard_skeleton_spawner", "ball", "start_feel", "typewriter", "experience_view", "end_feel", "restart_typewriter", "fireworks_spawner", "cameraController")]
+script = ExtResource("1_4mrxx")
+skeleton_spawner = NodePath("../SkeletonSpawner")
+skeleton_queue = NodePath("../SkeletonQueue")
+level_to_spawn_shield_skeleton = 2
+wizard_skeleton_spawner = NodePath("../WizardSkeletonSpawner")
+spawn_intervals = Array[float]([0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 0.5, 0.0])
+max_counts = Array[int]([0, 0, 0, 0, 1, 3, 4, 0])
+ball = NodePath("../Foreground/Ball")
+start_feel = NodePath("StartFeel")
+typewriter = NodePath("../UILayer/Tooltip/Typewriter")
+tooltips = Array[ExtResource("2_xgqkh")]([SubResource("Resource_luhhm"), SubResource("Resource_munwf"), SubResource("Resource_fh13f"), SubResource("Resource_ts3gi"), SubResource("Resource_0nbtd"), SubResource("Resource_37qwj"), SubResource("Resource_navra")])
+experience_view = NodePath("../UILayer/ExperienceView")
+end_level = 7
+end_feel = NodePath("EndFeel")
+restart_typewriter = NodePath("../UILayer/Restart/Typewriter")
+fireworks_spawner = NodePath("../Background/FireworksSpawner")
+cameraController = NodePath("../Camera2D")
+
+[node name="StartFeel" type="Node" parent="GameManager"]
+script = ExtResource("2_o8fc1")
+feels = Array[ExtResource("3_dss4m")]([SubResource("Resource_lakw3"), SubResource("Resource_7iits"), SubResource("Resource_kpybi"), SubResource("Resource_2lf6f"), SubResource("Resource_pm21f"), SubResource("Resource_oo54l"), SubResource("Resource_ctatt"), SubResource("Resource_xgqkh")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"
+
+[node name="EndFeel" type="Node" parent="GameManager"]
+script = ExtResource("2_o8fc1")
+feels = Array[ExtResource("3_dss4m")]([SubResource("Resource_rup4s"), SubResource("Resource_4kbfs"), SubResource("Resource_f17e3")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"
+
+[node name="SkeletonQueue" type="Node2D" parent="." node_paths=PackedStringArray("skeleton_spawner")]
+position = Vector2(101, 159)
+script = ExtResource("2_rwgxs")
+size = 16
+skeleton_spawner = NodePath("../SkeletonSpawner")
+distance_between_skeletons = 16.0
+
+[node name="SkeletonSpawner" parent="." instance=ExtResource("3_4wyf3")]
+skeleton_scene = ExtResource("4_q5onr")
+shield_skeleton_scene = ExtResource("5_jhx03")
+
+[node name="WizardSkeletonSpawner" type="Node2D" parent="."]
+position = Vector2(268, 68)
+script = ExtResource("5_71j4m")
+scene = ExtResource("6_qfnet")
+shape = SubResource("Resource_4mrxx")
+max_count = 0
+metadata/_custom_type_script = "uid://fii0bfbv1wfu"
+
+[node name="Floor" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(166, 132)
+shape = SubResource("WorldBoundaryShape2D_k0juu")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -45.0
+offset_right = 80.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="FireworksSpawner" type="Node2D" parent="Background"]
+position = Vector2(166, 68)
+script = ExtResource("5_71j4m")
+scene = ExtResource("20_0nbtd")
+shape = SubResource("Resource_x2olw")
+max_count = 4
+metadata/_custom_type_script = "uid://fii0bfbv1wfu"
+
+[node name="Foreground" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="GroundDustParticle" parent="Foreground" instance=ExtResource("21_7iits")]
+z_index = 0
+position = Vector2(251, 133)
+emitting = false
+
+[node name="Floor" type="Sprite2D" parent="Foreground"]
+texture_filter = 1
+position = Vector2(160, 103)
+texture = ExtResource("2_7r4gi")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": false,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": ["floor"],
+"o_ex_p": "",
+"o_folder": "res://assets/sprites",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/aseprite/background.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "53eec98eda565b2d22f370233d828451"
+
+[node name="Ball" parent="Foreground" instance=ExtResource("13_jhx03")]
+position = Vector2(105, 122)
+
+[node name="Player" parent="Foreground" node_paths=PackedStringArray("skeleton_queue", "experience_view") instance=ExtResource("1_nnsk1")]
+position = Vector2(82, 132)
+skeleton_queue = NodePath("../../SkeletonQueue")
+experience_view = NodePath("../../UILayer/ExperienceView")
+max_charge_time = 2.0
+decrease_multiplier = 10.0
+
+[node name="Parallax2D" type="Parallax2D" parent="Foreground"]
+scroll_offset = Vector2(0, 85)
+repeat_size = Vector2(480, 0)
+autoscroll = Vector2(10, 0)
+
+[node name="Cloud" type="Sprite2D" parent="Foreground/Parallax2D"]
+texture_filter = 1
+position = Vector2(161, 0)
+texture = ExtResource("9_w7kh3")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"pending_changes": {},
+"slice_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": false,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": ["cloud"],
+"o_ex_p": "",
+"o_folder": "res://assets/sprites",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/aseprite/background.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "dd636a3004639c05aa70b5c7ffda948d"
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Tooltip" type="Label" parent="UILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = -40.0
+offset_right = -68.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press  Space to Start"
+label_settings = SubResource("LabelSettings_oo54l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Typewriter" type="Node" parent="UILayer/Tooltip" node_paths=PackedStringArray("label")]
+script = ExtResource("24_ctatt")
+label = NodePath("..")
+type_speed = 20.0
+metadata/_custom_type_script = "uid://cxu73nl32pr74"
+
+[node name="Restart" type="Label" parent="UILayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = -106.0
+offset_right = -68.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Thanks for Playing
+Press  R to Restart"
+label_settings = SubResource("LabelSettings_oo54l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Typewriter" type="Node" parent="UILayer/Restart" node_paths=PackedStringArray("label")]
+script = ExtResource("24_ctatt")
+label = NodePath("..")
+type_speed = 20.0
+metadata/_custom_type_script = "uid://cxu73nl32pr74"
+
+[node name="ExperienceView" parent="UILayer" instance=ExtResource("4_k0juu")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -15.0
+offset_right = 93.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0

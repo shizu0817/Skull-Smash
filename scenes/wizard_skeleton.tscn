@@ -1,0 +1,176 @@
+[gd_scene load_steps=22 format=3 uid="uid://dbn5w2calp2l6"]
+
+[ext_resource type="PackedScene" uid="uid://dm7bfpn7upmx0" path="res://scenes/skeleton.tscn" id="1_xfml2"]
+[ext_resource type="Texture2D" uid="uid://bp8m5dpjm65xf" path="res://assets/sprites/wizard_skeleton.png" id="2_30d6o"]
+[ext_resource type="Script" uid="uid://c2833qnxap315" path="res://code/scripts/wizard_skeleton.gd" id="2_gva8l"]
+[ext_resource type="PackedScene" uid="uid://vo3fi27is8ig" path="res://scenes/particles/drain.tscn" id="4_bxdp0"]
+[ext_resource type="Script" uid="uid://dhcwna7kufn2m" path="res://code/scripts/Feel/feel_player.gd" id="5_5slnh"]
+[ext_resource type="Script" uid="uid://dr3646gmtd5i6" path="res://code/scripts/Feel/feel_component.gd" id="6_k58x6"]
+[ext_resource type="Script" uid="uid://xcqku7rlvrdi" path="res://code/scripts/Feel/Sound/sfx.gd" id="7_krr1v"]
+[ext_resource type="AudioStream" uid="uid://bdvn8q00rkpy6" path="res://assets/sfxs/drain.wav" id="8_d5130"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxdp0"]
+atlas = ExtResource("2_30d6o")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5slnh"]
+atlas = ExtResource("2_30d6o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvau5"]
+atlas = ExtResource("2_30d6o")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cym14"]
+atlas = ExtResource("2_30d6o")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k58x6"]
+atlas = ExtResource("2_30d6o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krr1v"]
+atlas = ExtResource("2_30d6o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5130"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxdp0")
+}],
+"loop": false,
+"name": &"Die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5slnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvau5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cym14")
+}],
+"loop": false,
+"name": &"Drain",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k58x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krr1v")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_5slnh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bxdp0"]
+resource_name = "float"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(0.75, 1.33333, 0.75, 1.33, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, 0), Vector2(0, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvau5"]
+_data = {
+&"RESET": SubResource("Animation_5slnh"),
+&"float": SubResource("Animation_bxdp0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5slnh"]
+size = Vector2(9, 14)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t0euj"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("8_d5130")
+
+[sub_resource type="Resource" id="Resource_006wp"]
+script = ExtResource("7_krr1v")
+audio_bus = "Sfx"
+volume = 1.0
+stream = SubResource("AudioStreamRandomizer_t0euj")
+metadata/_custom_type_script = "uid://xcqku7rlvrdi"
+
+[node name="WizardSkeleton" node_paths=PackedStringArray("drain_timer", "orb_marker", "animated_sprite", "hurtbox", "drain_feel") groups=["WizardSkeleton"] instance=ExtResource("1_xfml2")]
+script = ExtResource("2_gva8l")
+drain_ratio = 0.1
+drain_timer = NodePath("DrainTimer")
+drain_cooldown = 4.0
+drain_particle_scene = ExtResource("4_bxdp0")
+orb_marker = NodePath("OrbMarker2D")
+animated_sprite = NodePath("AnimatedSprite2D")
+hurtbox = NodePath("HurtBox")
+drain_feel = NodePath("DrainFeel")
+experience = 100
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_d5130")
+animation = &"Drain"
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://assets/sprites",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/aseprite/wizard_skeleton.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "be57bc17bd15b97103248b4ca7476d71"
+
+[node name="OrbMarker2D" type="Marker2D" parent="." index="3"]
+position = Vector2(-11, -11)
+
+[node name="DrainTimer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_hvau5")
+}
+autoplay = "float"
+
+[node name="HurtBox" type="Area2D" parent="." index="6"]
+collision_layer = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_5slnh")
+
+[node name="DrainFeel" type="Node" parent="." index="9"]
+script = ExtResource("5_5slnh")
+feels = Array[ExtResource("6_k58x6")]([SubResource("Resource_006wp")])
+metadata/_custom_type_script = "uid://dhcwna7kufn2m"

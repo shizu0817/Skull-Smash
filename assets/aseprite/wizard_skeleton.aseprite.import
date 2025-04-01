@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d4ax7hb2fa3kv"
+path="res://.godot/imported/wizard_skeleton.aseprite-ab394029001337a27846bdab0a3767a5.res"
+
+[deps]
+
+source_file="res://assets/aseprite/wizard_skeleton.aseprite"
+dest_files=["res://.godot/imported/wizard_skeleton.aseprite-ab394029001337a27846bdab0a3767a5.res"]
+
+[params]
+

@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://iwxqik0kkssw"]
+
+[ext_resource type="Script" uid="uid://dqm00bvw25mj2" path="res://code/scripts/Audio/music_manager.gd" id="1_yodp2"]
+[ext_resource type="AudioStream" uid="uid://bh2j4lyca5s66" path="res://assets/sfxs/wind.wav" id="2_yodp2"]
+[ext_resource type="AudioStream" uid="uid://d14h5ei71c14f" path="res://assets/musics/game_theme.wav" id="3_yodp2"]
+[ext_resource type="AudioStream" uid="uid://d2mt3tt28g6di" path="res://assets/musics/ending.wav" id="4_xcw26"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_tn5dr"]
+clip_count = 3
+clip_0/name = &"wind"
+clip_0/stream = ExtResource("2_yodp2")
+clip_0/auto_advance = 0
+clip_1/name = &"game_theme"
+clip_1/stream = ExtResource("3_yodp2")
+clip_1/auto_advance = 0
+clip_2/name = &"ending"
+clip_2/stream = ExtResource("4_xcw26")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 2,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(1, 2): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 2,
+"to_time": 1
+},
+Vector2i(2, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 3,
+"to_time": 1
+}
+}
+
+[node name="MusicManager" type="Node" node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("1_yodp2")
+audio_stream_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_tn5dr")
+volume_db = -15.0
+bus = &"Music"

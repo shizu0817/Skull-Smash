@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlayerStatsRetriever" load_steps=10 format=3 uid="uid://c2i28wvshjr7q"]
+
+[ext_resource type="Script" uid="uid://blstu8dfl55a4" path="res://code/scripts/player_stats.gd" id="1_kavnf"]
+[ext_resource type="Script" uid="uid://ektwe0rnr6sq" path="res://code/scripts/player_stats_retriever.gd" id="2_3658h"]
+[ext_resource type="Resource" uid="uid://cfyovrpqiudvg" path="res://resources/PlayerStats/level1.tres" id="2_cfhno"]
+[ext_resource type="Resource" uid="uid://bgewqrmoh46hu" path="res://resources/PlayerStats/level2.tres" id="3_bfgvc"]
+[ext_resource type="Resource" uid="uid://dylq182hviyuh" path="res://resources/PlayerStats/level3.tres" id="4_t5b1d"]
+[ext_resource type="Resource" uid="uid://d3x7bnadyn81c" path="res://resources/PlayerStats/level4.tres" id="5_h6rhh"]
+[ext_resource type="Resource" uid="uid://mxrcf2337eb" path="res://resources/PlayerStats/level5.tres" id="6_hkcpe"]
+[ext_resource type="Resource" uid="uid://p6a7vyq00jsu" path="res://resources/PlayerStats/level6.tres" id="7_xsbo3"]
+[ext_resource type="Resource" uid="uid://buiy4byp14u22" path="res://resources/PlayerStats/level7.tres" id="8_s5swu"]
+
+[resource]
+script = ExtResource("2_3658h")
+player_stats = Array[ExtResource("1_kavnf")]([ExtResource("2_cfhno"), ExtResource("3_bfgvc"), ExtResource("4_t5b1d"), ExtResource("5_h6rhh"), ExtResource("6_hkcpe"), ExtResource("7_xsbo3"), ExtResource("8_s5swu")])
+metadata/_custom_type_script = "uid://ektwe0rnr6sq"

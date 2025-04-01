@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://7g0exs4s7agi"]
+
+[ext_resource type="Texture2D" uid="uid://b1p7a0em7x6sf" path="res://assets/sprites/square.png" id="1_d0v6t"]
+[ext_resource type="Script" uid="uid://cqtsjh72kp0e0" path="res://code/scripts/fireworks.gd" id="2_7obb7"]
+
+[sub_resource type="Curve" id="Curve_d0v6t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.90089, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7obb7"]
+curve = SubResource("Curve_d0v6t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7obb7"]
+particle_flag_disable_z = true
+radial_velocity_min = 11.88
+radial_velocity_max = 23.44
+gravity = Vector3(0, 10, 0)
+scale_min = 0.02
+scale_max = 0.04
+scale_curve = SubResource("CurveTexture_7obb7")
+
+[node name="Fireworks" type="GPUParticles2D"]
+emitting = false
+amount = 64
+texture = ExtResource("1_d0v6t")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.46
+process_material = SubResource("ParticleProcessMaterial_7obb7")
+script = ExtResource("2_7obb7")

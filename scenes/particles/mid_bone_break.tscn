@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddo827q72n7pi"]
+
+[ext_resource type="Texture2D" uid="uid://bdr73is50bdks" path="res://assets/sprites/bone_particles.png" id="1_2pjth"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bjr67"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2pjth"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 4, 0)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(3, -1, 0)
+spread = 15.0
+flatness = 1.0
+initial_velocity_min = 117.5
+initial_velocity_max = 175.0
+angular_velocity_min = -60.0
+angular_velocity_max = -60.0
+gravity = Vector3(0, 200, 0)
+anim_offset_max = 1.0
+
+[node name="MidBoneBreak" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_bjr67")
+emitting = false
+amount = 12
+texture = ExtResource("1_2pjth")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2pjth")

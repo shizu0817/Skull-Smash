@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://buc5cf5tq84ds"]
+
+[ext_resource type="Texture2D" uid="uid://bdr73is50bdks" path="res://assets/sprites/bone_particles.png" id="1_7rwfn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bjr67"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7rwfn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 4, 0)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(5, -1, 0)
+spread = 5.0
+flatness = 1.0
+initial_velocity_min = 260.0
+initial_velocity_max = 347.5
+angular_velocity_min = -60.0
+angular_velocity_max = -60.0
+gravity = Vector3(0, 250, 0)
+anim_offset_max = 1.0
+
+[node name="HeavyBoneBreak" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_bjr67")
+emitting = false
+amount = 12
+texture = ExtResource("1_7rwfn")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7rwfn")

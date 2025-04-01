@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlwkvborx8ne8"]
+
+[ext_resource type="Script" uid="uid://d3ixxk2hnl50c" path="res://code/scripts/skeleton_spawner.gd" id="1_xg72f"]
+[ext_resource type="PackedScene" uid="uid://dm7bfpn7upmx0" path="res://scenes/skeleton.tscn" id="2_oubbd"]
+[ext_resource type="PackedScene" uid="uid://b346ay24csscj" path="res://scenes/shield_skeleton.tscn" id="3_h5ege"]
+
+[node name="SkeletonSpawner" type="Node"]
+script = ExtResource("1_xg72f")
+skeleton_scenes = Array[PackedScene]([ExtResource("2_oubbd"), ExtResource("3_h5ege")])
