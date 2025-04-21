@@ -4,6 +4,8 @@ A short simple game about breaking some skeletons.
 
 <img src="https://github.com/shizu0817/Skull-Smash/blob/main/gameplay1.gif" width="360"> <img src="https://github.com/shizu0817/Skull-Smash/blob/main/gameplay2.gif" width="360">
 
+### [<ins>play on itch.io</ins>](https://czu7985.itch.io/skull-smash)
+
 ## LICENSE
 
 ### [Musics](assets/musics/)
